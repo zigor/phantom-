@@ -2,13 +2,13 @@
 
 using Sitecore.Data;
 using Sitecore.Diagnostics;
-using MobyDick.TestKit.Data;
+using Phantom.TestKit.Data;
 
 #endregion
 
-namespace MobyDick.TestKit.Extensions
+namespace Phantom.TestKit.Extensions
 {
-  using MobyDick.TestKit.Data;
+  using Phantom.TestKit.Data;
 
   /// <summary>
    /// <see cref="ItemInformationDictionary"/> extensions

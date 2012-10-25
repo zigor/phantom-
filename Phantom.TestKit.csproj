@@ -8,8 +8,8 @@
     <ProjectGuid>{8F149CD1-DC79-4B05-8E73-6866D3564822}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MobyDick.TestKit</RootNamespace>
-    <AssemblyName>MobyDick.TestKit</AssemblyName>
+    <RootNamespace>Phantom.TestKit</RootNamespace>
+    <AssemblyName>Phantom.TestKit</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>

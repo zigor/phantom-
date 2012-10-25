@@ -1,4 +1,4 @@
-﻿namespace MobyDick.TestKit.Data.Memory
+﻿namespace Phantom.TestKit.Data.Memory
 {
   using System.Collections.Generic;
   using System.Linq;

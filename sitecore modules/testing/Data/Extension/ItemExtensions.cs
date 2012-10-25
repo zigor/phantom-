@@ -1,4 +1,4 @@
-﻿namespace MobyDick.TestKit.Data.Extensions
+﻿namespace Phantom.TestKit.Data.Extensions
 {
   using System;
 

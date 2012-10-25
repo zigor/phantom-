@@ -1,4 +1,4 @@
-﻿namespace MobyDick.TestKit.Configuration
+﻿namespace Phantom.TestKit.Configuration
 {
   using System.Xml;
 

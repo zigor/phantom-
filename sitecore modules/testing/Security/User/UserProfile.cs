@@ -1,4 +1,4 @@
-﻿namespace MobyDick.TestKit.Security
+﻿namespace Phantom.TestKit.Security
 {
   /// <summary>
   /// The user profile.

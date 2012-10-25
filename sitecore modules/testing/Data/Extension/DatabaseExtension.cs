@@ -1,9 +1,9 @@
-﻿namespace MobyDick.TestKit.Data
+﻿namespace Phantom.TestKit.Data
 {
   using System;
   using System.Collections.Generic;
 
-  using MobyDick.TestKit.Data.IDs;
+  using Phantom.TestKit.Data.IDs;
 
   using Sitecore.Data;
   using Sitecore.Data.Items;

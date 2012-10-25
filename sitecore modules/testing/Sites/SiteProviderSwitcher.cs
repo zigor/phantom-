@@ -1,4 +1,4 @@
-﻿namespace MobyDick.TestKit
+﻿namespace Phantom.TestKit
 {
   using Sitecore.Sites;
 

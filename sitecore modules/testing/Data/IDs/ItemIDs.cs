@@ -1,4 +1,4 @@
-﻿namespace MobyDick.TestKit.Data.IDs
+﻿namespace Phantom.TestKit.Data.IDs
 {
   using Sitecore.Data;
 

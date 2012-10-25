@@ -1,13 +1,13 @@
-﻿namespace MobyDick.TestKit.Data.Memory
+﻿namespace Phantom.TestKit.Data.Memory
 {
   using System.Collections.Generic;
 
   using Sitecore;
   using Sitecore.Data;
   using Sitecore.Diagnostics;
-  using MobyDick.TestKit.Extensions;
+  using Phantom.TestKit.Extensions;
 
-  using TestIDs = MobyDick.TestKit.Data.IDs.ItemIDs;
+  using TestIDs = Phantom.TestKit.Data.IDs.ItemIDs;
 
   /// <summary>
   /// The data storage.

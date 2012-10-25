@@ -1,4 +1,4 @@
-﻿namespace MobyDick.TestKit.DataProviders
+﻿namespace Phantom.TestKit.DataProviders
 {
   using System;
   using System.Data;

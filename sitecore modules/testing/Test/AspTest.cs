@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace MobyDick.TestKit.Test
+namespace Phantom.TestKit.Test
 {
   using System.Web;
   using System.Web.SessionState;
@@ -15,7 +15,7 @@ namespace MobyDick.TestKit.Test
 
   using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-  using MobyDick.TestKit.Web;
+  using Phantom.TestKit.Web;
 
   /// <summary>
   /// Defines the ASP test class.

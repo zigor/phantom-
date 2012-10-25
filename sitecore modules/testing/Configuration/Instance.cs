@@ -1,4 +1,4 @@
-﻿namespace MobyDick.TestKit.Configuration
+﻿namespace Phantom.TestKit.Configuration
 {
   using System;
   using System.Collections.Specialized;
@@ -6,7 +6,7 @@
   using System.Linq;
   using System.Xml;
 
-  using MobyDick.TestKit.Security.AccessControl;
+  using Phantom.TestKit.Security.AccessControl;
 
   using Moq;
 

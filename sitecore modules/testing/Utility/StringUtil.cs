@@ -1,4 +1,4 @@
-﻿namespace MobyDick.TestKit.Utility
+﻿namespace Phantom.TestKit.Utility
 {
   /// <summary>
   /// String utilities

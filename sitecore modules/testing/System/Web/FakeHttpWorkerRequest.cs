@@ -1,4 +1,4 @@
-﻿namespace MobyDick.TestKit.Web
+﻿namespace Phantom.TestKit.Web
 {
   using System;
   using System.Web;

@@ -1,4 +1,4 @@
-﻿namespace MobyDick.TestKit.Configuration
+﻿namespace Phantom.TestKit.Configuration
 {
   /// <summary>
   /// Defines the settings class.
@@ -13,7 +13,7 @@
     static Settings()
     {
       LicenseFilePath = "\\data\\license.xml";
-      SitecoreConfiguration = "<sitecore><pipelines><filterItem/><renderField><processor type=\"Sitecore.Pipelines.RenderField.GetFieldValue, Sitecore.Kernel\" /></renderField><loadVisitor/></pipelines><clientDataStore type=\"MobyDick.TestKit.Data.Memory.MemoryClientDataStore, MobyDick.TestKit\"/></sitecore>";
+      SitecoreConfiguration = "<sitecore><pipelines><filterItem/><renderField><processor type=\"Sitecore.Pipelines.RenderField.GetFieldValue, Sitecore.Kernel\" /></renderField><loadVisitor/></pipelines><clientDataStore type=\"Phantom.TestKit.Data.Memory.MemoryClientDataStore, Phantom.TestKit\"/></sitecore>";
     }
 
     #endregion

@@ -1,4 +1,4 @@
-﻿namespace MobyDick.TestKit.Utility
+﻿namespace Phantom.TestKit.Utility
 {
   using System;
   using System.Collections.Specialized;

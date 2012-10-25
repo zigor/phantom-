@@ -1,4 +1,4 @@
-namespace MobyDick.TestKit.Data
+namespace Phantom.TestKit.Data
 {
   using System.Collections;
   using System.Collections.Generic;

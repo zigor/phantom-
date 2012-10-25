@@ -1,4 +1,4 @@
-﻿namespace MobyDick.TestKit.Security.AccessControl
+﻿namespace Phantom.TestKit.Security.AccessControl
 {
   using Sitecore.Security.AccessControl;
   using Sitecore.Security.Accounts;

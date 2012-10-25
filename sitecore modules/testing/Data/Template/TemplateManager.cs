@@ -1,11 +1,11 @@
-﻿namespace MobyDick.TestKit.Data.Templates
+﻿namespace Phantom.TestKit.Data.Templates
 {
   using Sitecore;
   using Sitecore.Data;
   using Sitecore.Data.Items;
   using Sitecore.Diagnostics;
   using Sitecore.Globalization;
-  using MobyDick.TestKit.Data.Extensions;
+  using Phantom.TestKit.Data.Extensions;
 
   /// <summary>
   /// The template manager.

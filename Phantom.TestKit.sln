@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobyDick.TestKit", "MobyDick.TestKit.csproj", "{8F149CD1-DC79-4B05-8E73-6866D3564822}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phantom.TestKit", "Phantom.TestKit.csproj", "{8F149CD1-DC79-4B05-8E73-6866D3564822}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

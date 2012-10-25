@@ -1,6 +1,6 @@
-﻿namespace MobyDick.TestKit.Data
+﻿namespace Phantom.TestKit.Data
 {
-  using MobyDick.TestKit.Data.Memory;
+  using Phantom.TestKit.Data.Memory;
 
   using Sitecore.Data;
 

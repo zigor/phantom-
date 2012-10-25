@@ -1,21 +1,21 @@
-﻿namespace MobyDick.TestKit.Data
+﻿namespace Phantom.TestKit.Data
 {
   using System;
   using System.Collections;
   using System.Collections.Generic;
   using System.Linq;
 
-  using MobyDick.TestKit.Configuration;
-  using MobyDick.TestKit.Data.Templates;
+  using Phantom.TestKit.Configuration;
+  using Phantom.TestKit.Data.Templates;
 
   using Sitecore;
   using Sitecore.Data;
   using Sitecore.Data.Items;
   using Sitecore.Diagnostics;
   using Sitecore.Globalization;
-  using MobyDick.TestKit.Data.Extensions;
+  using Phantom.TestKit.Data.Extensions;
 
-  using TestIDs = MobyDick.TestKit.Data.IDs.ItemIDs;
+  using TestIDs = Phantom.TestKit.Data.IDs.ItemIDs;
   using Version = Sitecore.Data.Version;
 
   /// <summary>

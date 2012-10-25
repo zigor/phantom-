@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace MobyDick.TestKit.Security.CRM.Data
+namespace Phantom.TestKit.Security.CRM.Data
 {
   using System.Linq;
 

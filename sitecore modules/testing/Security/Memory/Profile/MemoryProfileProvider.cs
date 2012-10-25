@@ -1,4 +1,4 @@
-﻿namespace MobyDick.TestKit.Security.Memory.Profile
+﻿namespace Phantom.TestKit.Security.Memory.Profile
 {
   using System;
   using System.Configuration;
