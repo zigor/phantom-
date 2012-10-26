@@ -323,11 +323,10 @@
     /// </returns>
     public override LanguageCollection GetLanguages(CallContext context)
     {
-      var languages = new LanguageCollection();
+      LanguageCollection languages = new LanguageCollection();
 
-      IEnumerable<ItemInformation> languageItems =
-        this.DataStorage.GetItems().Where(l => l.ItemDefinition.TemplateID == TemplateIDs.Language);
-      foreach (ItemInformation languageItem in languageItems)
+      var languageItems = this.DataStorage.GetItems().Where(l => l.ItemDefinition.TemplateID == TemplateIDs.Language);
+      foreach (var languageItem in languageItems)
       {
         Language language;
         ID id = languageItem.ItemDefinition.ID;

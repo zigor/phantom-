@@ -2,6 +2,7 @@ namespace Phantom.TestKit.Data
 {
   using System.Collections;
   using System.Collections.Generic;
+  using System.Collections.Specialized;
   using System.Data.Linq;
   using System.Linq;
 
@@ -12,7 +13,7 @@ namespace Phantom.TestKit.Data
   /// <summary>
   /// Defines the TItem class.
   /// </summary>
-  public class TItem : TItemBase, IEnumerable<TItem>
+  public class TItem : TItemBase, IEnumerable<TItem>, IEnumerable<KeyValuePair<string, string>>
   {
     #region Fields
 
@@ -20,6 +21,11 @@ namespace Phantom.TestKit.Data
     /// The children list
     /// </summary>
     private readonly List<TItem> children = new List<TItem>();
+
+    /// <summary>
+    /// The field values list.
+    /// </summary>
+    private readonly List<KeyValuePair<string, string>> fieldValueList = new List<KeyValuePair<string, string>>();
 
     #endregion
 
@@ -181,8 +187,23 @@ namespace Phantom.TestKit.Data
     /// The name.
     /// </param>
     public TItem(string name)
-      : base(name, new TemplateID(TemplateIDs.Folder))
+      : this(name, ID.NewID, ID.NewID)
     {
+    }
+
+    #endregion
+
+    #region Properties
+
+    /// <summary>
+    /// Gets the fields.
+    /// </summary>
+    public List<KeyValuePair<string, string>> Fields
+    {
+      get
+      {
+        return this.fieldValueList;
+      }
     }
 
     #endregion
@@ -205,6 +226,28 @@ namespace Phantom.TestKit.Data
       }
 
       this.children.Add(item);
+    }
+
+    /// <summary>
+    /// Adds the specified key.
+    /// </summary>
+    /// <param name="key">The key.</param>
+    /// <param name="value">The value.</param>
+    public void Add(string key, string value)
+    {
+      this.fieldValueList.Add(new KeyValuePair<string, string>(key, value));
+    }
+
+    /// <summary>
+    /// Adds the specified field values.
+    /// </summary>
+    /// <param name="fieldValues">The field values.</param>
+    public void Add(NameValueCollection fieldValues)
+    {
+      foreach (string key in fieldValues)
+      {
+        this.Add(key, fieldValues[key]);
+      }
     }
 
     /// <summary>
@@ -231,6 +274,17 @@ namespace Phantom.TestKit.Data
     IEnumerator IEnumerable.GetEnumerator()
     {
       return this.GetEnumerator();
+    }
+
+    /// <summary>
+    /// Returns an enumerator that iterates through the collection.
+    /// </summary>
+    /// <returns>
+    /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+    /// </returns>
+    IEnumerator<KeyValuePair<string, string>> IEnumerable<KeyValuePair<string, string>>.GetEnumerator()
+    {
+      return this.fieldValueList.GetEnumerator();
     }
 
     #endregion

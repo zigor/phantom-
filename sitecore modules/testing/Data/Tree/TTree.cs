@@ -133,12 +133,8 @@
 
       foreach (TTemplate baseTemplate in template.BaseTemplates)
       {
-        Add(baseTemplate);
-
-        createdTempalte.Edit(
-          i =>
-          i.Fields[FieldIDs.BaseTemplate].Value =
-          string.Join("|", new[] { baseTemplate.ID.ToString(), i.Fields[FieldIDs.BaseTemplate].Value }));
+        this.Add(baseTemplate);
+        createdTempalte.Edit(i => i.Fields[FieldIDs.BaseTemplate].Value = string.Join("|", new[] { baseTemplate.ID.ToString(), i.Fields[FieldIDs.BaseTemplate].Value }));
       }
 
       foreach (var pair in this.postponedItems.Where(i => i.Key.TemplateID == template.ID).ToArray())
@@ -236,19 +232,27 @@
     /// </param>
     private void Add(TItem item, ID parentID)
     {
-      if (this.database.GetItem(item.TemplateID) != null)
+      var template = this.database.GetItem(item.TemplateID);
+      if (template == null)
       {
-        this.database.CreateItem(item.ID, item.Name, item.TemplateID, parentID);
-        this.itemsIds.Add(item.ID);
+        this.Add(new TTemplate(item.Name, item.TemplateID) { new TSection("Data") { item.Fields.ConvertAll(kvp => kvp.Key) } });
+      }
 
-        foreach (TItem child in item)
+      Item newItem = this.database.CreateItem(item.ID, item.Name, item.TemplateID, parentID);
+
+      using (new EditContext(newItem))
+      {
+        foreach (KeyValuePair<string, string> keyValuePair in (IEnumerable<KeyValuePair<string, string>>)item)
         {
-          this.Add(child, item.ID);
+          newItem[keyValuePair.Key] = keyValuePair.Value;
         }
       }
-      else
+
+      this.itemsIds.Add(item.ID);
+
+      foreach (TItem child in item)
       {
-        this.postponedItems.Add(item, parentID);
+        this.Add(child, item.ID);
       }
     }
 

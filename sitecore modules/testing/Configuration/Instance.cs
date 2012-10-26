@@ -14,6 +14,7 @@ namespace Phantom.TestKit.Configuration
   using System.Collections.Specialized;
   using System.IO;
   using System.Linq;
+  using System.Threading;
   using System.Xml;
   using System.Xml.Linq;
 
@@ -22,6 +23,8 @@ namespace Phantom.TestKit.Configuration
   using Phantom.TestKit.Security.AccessControl;
 
   using Sitecore;
+  using Sitecore.Caching;
+  using Sitecore.Common;
   using Sitecore.Configuration;
   using Sitecore.Data;
   using Sitecore.Data.Managers;
@@ -133,6 +136,7 @@ namespace Phantom.TestKit.Configuration
     {
       Factory.Reset();
 
+      this.DisableCaching();
       this.LicenseRelativePath();
       this.MockAccessRightProvider();
       this.MockAuthenticationProvider();
@@ -147,6 +151,15 @@ namespace Phantom.TestKit.Configuration
     #endregion
 
     #region Methods
+
+
+    /// <summary>
+    /// Disables the caching.
+    /// </summary>
+    protected virtual void DisableCaching()
+    {
+      CacheManager.Enabled = false;
+    }
 
     /// <summary>
     /// Licenses the relative path.
@@ -163,7 +176,7 @@ namespace Phantom.TestKit.Configuration
         path = basePath + string.Join(string.Empty, Enumerable.Repeat("\\..", i).ToArray());
         --i;
       }
-      while (i >= 0 && !File.Exists(path + license));
+      while (i >= 0 && (!Directory.Exists(path) || !File.Exists(path + license)));
 
       State.HttpRuntime.AppDomainAppPath = path;
     }
@@ -184,11 +197,13 @@ namespace Phantom.TestKit.Configuration
     /// </summary>    
     protected virtual void MockAuthenticationProvider()
     {
-      var authenticationProvider = new Mock<FormsAuthenticationProvider> { CallBase = true };
-      authenticationProvider.Setup(p => p.GetActiveUser()).Returns(User.FromName("Anonymous", false));
+      var authenticationProvider = new Mock<MembershipAuthenticationProvider> { CallBase = true };
+      authenticationProvider.Setup(p => p.GetActiveUser()).Returns(() => Thread.CurrentPrincipal as User ?? User.FromName("Anonymous", false));
+      authenticationProvider.Setup(p => p.SetActiveUser(It.IsAny<User>())).Callback<User>(u => Thread.CurrentPrincipal = u);
       ProviderHelper<AuthenticationProvider, AuthenticationProviderCollection>.DefaultProvider =
         authenticationProvider.Object;
       authenticationProvider.Object.Initialize("mock", new NameValueCollection());
+      var user = AuthenticationManager.GetActiveUser();
     }
 
     /// <summary>

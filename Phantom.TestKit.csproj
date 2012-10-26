@@ -95,6 +95,7 @@
     <Compile Include="sitecore modules\testing\Data\DataProvider\TDatabase.cs" />
     <Compile Include="sitecore modules\testing\Data\DataProvider\SqlDataApi.cs" />
     <Compile Include="sitecore modules\testing\Sites\SiteProviderSwitcher.cs" />
+    <Compile Include="sitecore modules\testing\Sites\TSiteContext.cs" />
     <Compile Include="sitecore modules\testing\System\Web\HttpContextExtensions.cs" />
     <Compile Include="sitecore modules\testing\System\Web\MemoryHttpSessionState.cs" />
     <Compile Include="sitecore modules\testing\Test\AspTest.cs" />

@@ -1,4 +1,13 @@
-﻿namespace Phantom.TestKit.Data
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="TSection.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The t section.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace Phantom.TestKit.Data
 {
   using System.Collections;
   using System.Collections.Generic;
@@ -72,6 +81,45 @@
     /// <param name="fieldName">
     /// The field name.
     /// </param>
+    public void Add(string fieldName)
+    {
+      this.Add(fieldName, ID.NewID);
+    }
+
+    /// <summary>
+    /// The add.
+    /// </summary>
+    /// <param name="fieldNames">
+    /// The field names.
+    /// </param>
+    public void Add(IEnumerable<string> fieldNames)
+    {
+      foreach (string fieldName in fieldNames)
+      {
+        this.Add(fieldName);
+      }
+    }
+
+    /// <summary>
+    /// The add.
+    /// </summary>
+    /// <param name="fieldName">
+    /// The field name.
+    /// </param>
+    /// <param name="id">
+    /// The id.
+    /// </param>
+    public void Add(string fieldName, ID id)
+    {
+      this.Add(fieldName, id, "Single-Line Text");
+    }
+
+    /// <summary>
+    /// The add.
+    /// </summary>
+    /// <param name="fieldName">
+    /// The field name.
+    /// </param>
     /// <param name="id">
     /// The id.
     /// </param>
@@ -89,26 +137,13 @@
     /// <summary>
     /// The add.
     /// </summary>
-    /// <param name="fieldName">
-    /// The field name.
-    /// </param>
-    /// <param name="id">
-    /// The id.
-    /// </param>
-    public void Add(string fieldName, ID id)
-    {
-      this.Add(fieldName, id, string.Empty);
-    }
-
-    /// <summary>
-    /// The add.
-    /// </summary>
     /// <param name="field">
     /// The field.
     /// </param>
     public void Add(TField field)
     {
       Assert.ArgumentNotNull(field, "field");
+
       this.fields.Add(field);
     }
 
