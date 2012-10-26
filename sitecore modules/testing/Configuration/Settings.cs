@@ -13,7 +13,7 @@
     static Settings()
     {
       LicenseFilePath = "\\data\\license.xml";
-      SitecoreConfiguration = "<sitecore><pipelines><filterItem/><renderField><processor type=\"Sitecore.Pipelines.RenderField.GetFieldValue, Sitecore.Kernel\" /></renderField><loadVisitor/></pipelines><clientDataStore type=\"Phantom.TestKit.Data.Memory.MemoryClientDataStore, Phantom.TestKit\"/></sitecore>";
+      SitecoreConfiguration = "<sitecore><clientDataStore type=\"Phantom.TestKit.Data.Memory.MemoryClientDataStore, Phantom.TestKit\"/></sitecore>";
     }
 
     #endregion
