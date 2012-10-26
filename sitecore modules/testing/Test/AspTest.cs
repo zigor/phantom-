@@ -82,7 +82,7 @@ namespace Phantom.TestKit.Test
     private void InitContext(string page, string queryString)
     {
       IHttpSessionState session = null;
-      if (HttpContext.Current != null)
+      if (HttpContext.Current != null && HttpContext.Current.Session != null)
       {
         session = SessionStateUtility.GetHttpSessionStateFromContext(HttpContext.Current);
       }
