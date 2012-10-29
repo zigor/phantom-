@@ -54,18 +54,21 @@
     /// </summary>
     static TTree()
     {
-      var sitecore = new Instance();
+      if (Instance.DefaultInitializationRequired)
+      {
+        var sitecore = new Instance();
 
-      sitecore.AddDatabase("master");
-      sitecore.AddDatabase("core");
-      sitecore.AddDatabase("web");
-      
-      sitecore.AddPipeline("filterItem", null, null);
-      sitecore.AddPipeline("loadVisitor", null, null);
-      sitecore.AddPipeline("filterItem", null, null);
-      sitecore.AddPipeline("renderField", "Sitecore.Pipelines.RenderField.GetFieldValue, Sitecore.Kernel", null);
+        sitecore.AddDatabase("master");
+        sitecore.AddDatabase("core");
+        sitecore.AddDatabase("web");
 
-      sitecore.Prepare();
+        sitecore.AddPipeline("filterItem", null, null);
+        sitecore.AddPipeline("loadVisitor", null, null);
+        sitecore.AddPipeline("filterItem", null, null);
+        sitecore.AddPipeline("renderField", "Sitecore.Pipelines.RenderField.GetFieldValue, Sitecore.Kernel", null);
+
+        sitecore.Prepare();
+      }
     }
 
     /// <summary>

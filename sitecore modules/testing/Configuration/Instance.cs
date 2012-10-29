@@ -47,12 +47,21 @@ namespace Phantom.TestKit.Configuration
     #region Constructors and Destructors
 
     /// <summary>
+    /// Initializes the <see cref="Instance"/> class.
+    /// </summary>
+    static Instance()
+    {
+      DefaultInitializationRequired = true;
+    }
+
+    /// <summary>
     /// Initializes a new instance of the <see cref="Instance"/> class.
     /// </summary>
     public Instance()
     {
       this.Databases = new List<string>();
       this.Pipelines = new Dictionary<string, List<string>>();
+      DefaultInitializationRequired = false;
     }
 
     #endregion
@@ -68,6 +77,14 @@ namespace Phantom.TestKit.Configuration
     /// Gets Pipelines
     /// </summary>
     protected Dictionary<string, List<string>> Pipelines { get; private set; }
+
+    /// <summary>
+    /// Gets a value indicating whether [default initialization required].
+    /// </summary>
+    /// <value>
+    /// <c>true</c> if [default initialization required]; otherwise, <c>false</c>.
+    /// </value>
+    internal static bool DefaultInitializationRequired { get; private set; }
 
     #endregion
 
@@ -138,12 +155,12 @@ namespace Phantom.TestKit.Configuration
 
       this.DisableCaching();
       this.LicenseRelativePath();
+      this.MockConfiguration();
       this.MockAccessRightProvider();
       this.MockAuthenticationProvider();
       this.MockAuthorizationProvider();
       this.MockDomainProvider();
       this.MockItemProvider();
-      this.MockConfiguration();
       this.MockStandardValuesProvider();
       this.MockLinkProvider();
     }
@@ -198,7 +215,11 @@ namespace Phantom.TestKit.Configuration
     protected virtual void MockAuthenticationProvider()
     {
       var authenticationProvider = new Mock<MembershipAuthenticationProvider> { CallBase = true };
-      authenticationProvider.Setup(p => p.GetActiveUser()).Returns(() => Thread.CurrentPrincipal as User ?? User.FromName("Anonymous", false));
+
+      var defaultUser = User.FromName("Anonymous", false);
+      defaultUser.RuntimeSettings.IsVirtual = true;
+
+      authenticationProvider.Setup(p => p.GetActiveUser()).Returns(() => Thread.CurrentPrincipal as User ?? defaultUser);
       authenticationProvider.Setup(p => p.SetActiveUser(It.IsAny<User>())).Callback<User>(u => Thread.CurrentPrincipal = u);
       ProviderHelper<AuthenticationProvider, AuthenticationProviderCollection>.DefaultProvider =
         authenticationProvider.Object;

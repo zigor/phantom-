@@ -6,15 +6,14 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{73B473D7-391F-4B0A-95C5-58E9F3A41106}</ProjectGuid>
+    <ProjectGuid>{AD3DE801-6740-480B-906B-E0A49212E7D2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sitecore.TestKit.Tests</RootNamespace>
-    <AssemblyName>Sitecore.TestKit.Tests</AssemblyName>
+    <RootNamespace>Phantom.Tests.Sample</RootNamespace>
+    <AssemblyName>Phantom.Tests.Sample</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -35,32 +34,25 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentAssertions">
-      <HintPath>..\packages\FluentAssertions.1.7.1.1\Lib\net35\FluentAssertions.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>bin\FluentAssertions.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>bin\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Sitecore.Kernel">
-      <HintPath>..\Resources\Sitecore.Kernel.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>bin\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="sitecore.nexus">
-      <HintPath>..\Resources\sitecore.nexus.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>bin\sitecore.nexus.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.XML" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="xunit">
-      <HintPath>..\packages\xunit.1.9.1\lib\net20\xunit.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.extensions">
-      <HintPath>..\packages\xunit.extensions.1.9.1\lib\net20\xunit.extensions.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -68,31 +60,16 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Memory\DataStorageTest.cs" />
-    <Compile Include="Data\TTreeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Data\TItemTest.cs" />
-    <Compile Include="Sample.cs" />
-    <Compile Include="Security\AccessControl\ItemSecurityTest.cs" />
-    <Compile Include="Security\AccessControl\MemoryAuthorizationProviderTest.cs" />
-    <Compile Include="Sites\TSiteContextTest.cs" />
+    <Compile Include="TestBasicOperations.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Sitecore.TestKit\Sitecore.TestKit.csproj">
+    <ProjectReference Include="..\Phantom.TestKit.csproj">
       <Project>{8F149CD1-DC79-4B05-8E73-6866D3564822}</Project>
-      <Name>Sitecore.TestKit</Name>
-      <Private>False</Private>
+      <Name>Phantom.TestKit</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
