@@ -20,7 +20,7 @@
     public TDatabase(string name)
       : base(name)
     {
-      this.DataProviders.Add(new MemoryDataProvider(string.Empty) { Name = "name" });
+      this.DataProviders.Add(new MemoryDataProvider(string.Empty) { Name = name });
       this.Caches.DataCache.Enabled = false;
       this.Caches.ItemCache.Enabled = false;
       this.Caches.PathCache.Enabled = false;
