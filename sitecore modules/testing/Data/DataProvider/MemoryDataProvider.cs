@@ -1,5 +1,6 @@
 ﻿namespace Phantom.TestKit.Data.Memory
 {
+  using System;
   using System.Collections.Generic;
   using System.Linq;
 
@@ -9,6 +10,8 @@
   using Sitecore.Data.DataProviders;
   using Sitecore.Data.Items;
   using Sitecore.Globalization;
+
+  using Version = Sitecore.Data.Version;
 
   /// <summary>
   /// The memory data provider.
@@ -496,19 +499,28 @@
         foreach (FieldChange change in changes.FieldChanges)
         {
           ItemData data = info.GetItemData(change.Language, change.Version);
-          var fields = new FieldList();
 
-          foreach (KeyValuePair<ID, string> field in data.Fields)
+          if (this.GetItemDefinition(change.FieldID, context) != null)
           {
-            if (field.Key != change.FieldID)
+            //foreach (KeyValuePair<ID, string> field in data.Fields)
+            //{
+            //  if (field.Key != change.FieldID)
+            //  {
+            //    fields.Add(field.Key, field.Value);
+            //  }
+            //}
+
+            if (!change.RemoveField)
             {
-              fields.Add(field.Key, field.Value);
+              data.Fields.Add(change.FieldID, change.Value);
             }
-          }
-
-          if (!change.RemoveField)
-          {
-            data.Fields.Add(change.FieldID, change.Value);
+            else
+            {
+              if (data.Fields.FieldValues.Contains(change.FieldID))
+              {
+                data.Fields.FieldValues.Remove(change.FieldID);
+              }
+            }
           }
         }
 

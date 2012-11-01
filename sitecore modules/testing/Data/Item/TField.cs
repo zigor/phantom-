@@ -92,7 +92,7 @@
     public TField(string name, ID id, string type, bool shared, bool unversioned)
       : base(name, id)
     {
-      this.Type = type;
+      this.Type = type ?? "Single-Line Text";
       this.Shared = shared;
       this.Unversioned = unversioned;
     }

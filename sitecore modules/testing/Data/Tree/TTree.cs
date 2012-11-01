@@ -129,6 +129,13 @@
     public void Add(TTemplate template)
     {
       this.CreateTemplate(template, ItemIDs.TemplateRoot);
+
+      foreach (var section in template.Sections)
+      {
+        section.Fields.ToList().ForEach(f => this.itemsIds.Add(f.ID));
+        this.itemsIds.Add(section.ID);
+      }
+
       this.templatesIds.Add(template.ID);
 
       Item createdTempalte = this.Database.GetItem(template.ID, Language.Invariant, Version.Latest);
@@ -172,6 +179,8 @@
     {
       this.database.RemoveItems(this.itemsIds);
       this.database.RemoveItems(this.templatesIds);
+
+      this.Database.Engines.TemplateEngine.Reset();
     }
 
     /// <summary>
