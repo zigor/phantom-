@@ -1,11 +1,11 @@
-﻿namespace Phantom.TestKit.Data.Templates
+﻿namespace Sitecore.TestKit.Data.Templates
 {
   using Sitecore;
   using Sitecore.Data;
   using Sitecore.Data.Items;
   using Sitecore.Diagnostics;
   using Sitecore.Globalization;
-  using Phantom.TestKit.Data.Extensions;
+  using Sitecore.TestKit.Data.Extensions;
 
   /// <summary>
   /// The template manager.

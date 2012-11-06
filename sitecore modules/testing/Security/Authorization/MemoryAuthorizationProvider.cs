@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Phantom.TestKit.Security.AccessControl
+namespace Sitecore.TestKit.Security.AccessControl
 {
   using System.Collections.Generic;
 

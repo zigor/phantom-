@@ -8,8 +8,8 @@
     <ProjectGuid>{8F149CD1-DC79-4B05-8E73-6866D3564822}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Phantom.TestKit</RootNamespace>
-    <AssemblyName>Phantom.TestKit</AssemblyName>
+    <RootNamespace>Sitecore.TestKit</RootNamespace>
+    <AssemblyName>Sitecore.TestKit</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -90,7 +90,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="sitecore modules\testing\Configuration\Instance.cs" />
-    <Compile Include="sitecore modules\testing\Configuration\Settings.cs" />
     <Compile Include="sitecore modules\testing\Data\Context\TContext.cs" />
     <Compile Include="sitecore modules\testing\Data\DataProvider\TDatabase.cs" />
     <Compile Include="sitecore modules\testing\Data\DataProvider\SqlDataApi.cs" />

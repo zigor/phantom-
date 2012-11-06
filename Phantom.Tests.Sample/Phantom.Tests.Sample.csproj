@@ -64,9 +64,9 @@
     <Compile Include="TestBasicOperations.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Phantom.TestKit.csproj">
-      <Project>{8F149CD1-DC79-4B05-8E73-6866D3564822}</Project>
-      <Name>Phantom.TestKit</Name>
+    <ProjectReference Include="..\Sitecore.TestKit.csproj">
+      <Project>{8f149cd1-dc79-4b05-8e73-6866d3564822}</Project>
+      <Name>Sitecore.TestKit</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

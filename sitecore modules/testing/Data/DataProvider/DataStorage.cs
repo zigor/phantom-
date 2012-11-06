@@ -1,13 +1,13 @@
-﻿namespace Phantom.TestKit.Data.Memory
+﻿namespace Sitecore.TestKit.Data.Memory
 {
   using System.Collections.Generic;
 
   using Sitecore;
   using Sitecore.Data;
   using Sitecore.Diagnostics;
-  using Phantom.TestKit.Extensions;
+  using Sitecore.TestKit.Extensions;
 
-  using TestIDs = Phantom.TestKit.Data.IDs.ItemIDs;
+  using TestIDs = IDs.ItemIDs;
 
   /// <summary>
   /// The data storage.

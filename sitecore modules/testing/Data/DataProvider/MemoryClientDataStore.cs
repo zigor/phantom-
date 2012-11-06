@@ -1,4 +1,4 @@
-﻿namespace Phantom.TestKit.Data.Memory
+﻿namespace Sitecore.TestKit.Data.Memory
 {
   using System;
 

@@ -1,4 +1,4 @@
-﻿namespace Phantom.TestKit
+﻿namespace Sitecore.TestKit
 {
   using Sitecore.Sites;
 

@@ -7,7 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Phantom.TestKit.Configuration
+using Sitecore.Common;
+using Sitecore.TestKit.Security.AccessControl;
+
+namespace Sitecore.TestKit.Configuration
 {
   using System;
   using System.Collections.Generic;
@@ -20,11 +23,10 @@ namespace Phantom.TestKit.Configuration
 
   using Moq;
 
-  using Phantom.TestKit.Security.AccessControl;
+  using Sitecore.TestKit.Security.AccessControl;
 
   using Sitecore;
   using Sitecore.Caching;
-  using Sitecore.Common;
   using Sitecore.Configuration;
   using Sitecore.Data;
   using Sitecore.Data.Managers;
@@ -37,13 +39,19 @@ namespace Phantom.TestKit.Configuration
   using Sitecore.Security.Authentication;
   using Sitecore.Security.Domains;
   using Sitecore.SecurityModel;
-  using Sitecore.StringExtensions;
 
   /// <summary>
   /// Defines the instance class.
   /// </summary>
   public class Instance
   {
+    private static string _licenseFilePath;
+
+    /// <summary>
+    /// The license full path
+    /// </summary>
+    private string licenseFullPath;
+
     #region Constructors and Destructors
 
     /// <summary>
@@ -51,17 +59,15 @@ namespace Phantom.TestKit.Configuration
     /// </summary>
     static Instance()
     {
-      DefaultInitializationRequired = true;
+      Databases = new List<string>();
+      Pipelines = new Dictionary<string, List<string>>();
+
+      LicenseFilePath = "\\data\\license.xml";
     }
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Instance"/> class.
-    /// </summary>
-    public Instance()
+    private Instance()
     {
-      this.Databases = new List<string>();
-      this.Pipelines = new Dictionary<string, List<string>>();
-      DefaultInitializationRequired = false;
+
     }
 
     #endregion
@@ -69,22 +75,33 @@ namespace Phantom.TestKit.Configuration
     #region Properties
 
     /// <summary>
+    /// Gets or sets the license file path.
+    /// </summary>
+    /// <value>
+    /// The license file path.
+    /// </value>
+    public static string LicenseFilePath
+    {
+      get
+      {
+        return _licenseFilePath;
+      }
+      set
+      {
+        _licenseFilePath = value;
+        Instance.Prepare();
+      }
+    }
+
+    /// <summary>
     /// Gets Databases
     /// </summary>
-    protected List<string> Databases { get; private set; }
+    protected static List<string> Databases { get; private set; }
 
     /// <summary>
     /// Gets Pipelines
     /// </summary>
-    protected Dictionary<string, List<string>> Pipelines { get; private set; }
-
-    /// <summary>
-    /// Gets a value indicating whether [default initialization required].
-    /// </summary>
-    /// <value>
-    /// <c>true</c> if [default initialization required]; otherwise, <c>false</c>.
-    /// </value>
-    internal static bool DefaultInitializationRequired { get; private set; }
+    protected static Dictionary<string, List<string>> Pipelines { get; private set; }
 
     #endregion
 
@@ -96,20 +113,23 @@ namespace Phantom.TestKit.Configuration
     /// <param name="databaseName">
     /// Name of the database.
     /// </param>
-    public void AddDatabase(string databaseName)
+    public static void AddDatabase(string databaseName)
     {
       Assert.ArgumentNotNullOrEmpty(databaseName, "databaseName");
 
       var database = new XElement("database",
           new XAttribute("id", databaseName),
           new XAttribute("singleInstance", "true"),
-          new XAttribute("type", " Phantom.TestKit.Data.TDatabase, Phantom.TestKit"),
+          new XAttribute("type", " Sitecore.TestKit.Data.TDatabase, Sitecore.TestKit"),
           new XElement("param", databaseName)).ToString();
 
-      if (!this.Databases.Contains(database))
+      if (!Databases.Contains(database))
       {
-        this.Databases.Add(database);
+        Databases.Add(database);
       }
+
+
+      Instance.Prepare();
     }
 
     /// <summary>
@@ -118,57 +138,61 @@ namespace Phantom.TestKit.Configuration
     /// <param name="pipelineName">Name of the pipeline.</param>
     /// <param name="assemblyAndTypeName">Name of the assembly and type.</param>
     /// <param name="methodName">Name of the method.</param>
-    public void AddPipeline(string pipelineName, string assemblyAndTypeName, string methodName)
+    public static void AddPipeline(string pipelineName, string assemblyAndTypeName, string methodName)
     {
       Assert.ArgumentNotNullOrEmpty(pipelineName, "pipelineName");
 
       List<string> processors;
 
-      if (!this.Pipelines.ContainsKey(pipelineName))
+      if (!Pipelines.ContainsKey(pipelineName))
       {
         processors = new List<string>();
-        this.Pipelines.Add(pipelineName, processors);
+        Pipelines.Add(pipelineName, processors);
       }
       else
       {
-        processors = this.Pipelines[pipelineName];
+        processors = Pipelines[pipelineName];
       }
 
-      if (!string.IsNullOrEmpty(assemblyAndTypeName))
+      if (!String.IsNullOrEmpty(assemblyAndTypeName))
       {
-        string processor = string.Format("<processor type=\"{0}\" method=\"{1}\" />", 
-                                         assemblyAndTypeName, string.IsNullOrEmpty(methodName) ? "Process" : methodName);
+        string processor = String.Format("<processor type=\"{0}\" method=\"{1}\" />",
+                                         assemblyAndTypeName, String.IsNullOrEmpty(methodName) ? "Process" : methodName);
 
         if (!processors.Contains(processor))
         {
           processors.Add(processor);
         }
       }
+
+
+      Instance.Prepare();
     }
 
     /// <summary>
     /// Prepares this instance.
     /// </summary>
-    public void Prepare()
+    internal static void Prepare()
     {
+      var instance = new Instance();
+
       Factory.Reset();
 
-      this.DisableCaching();
-      this.LicenseRelativePath();
-      this.MockConfiguration();
-      this.MockAccessRightProvider();
-      this.MockAuthenticationProvider();
-      this.MockAuthorizationProvider();
-      this.MockDomainProvider();
-      this.MockItemProvider();
-      this.MockStandardValuesProvider();
-      this.MockLinkProvider();
+      instance.DisableCaching();
+      instance.LicenseRelativePath();
+      instance.MockConfiguration();
+      instance.MockAccessRightProvider();
+      instance.MockAuthenticationProvider();
+      instance.MockAuthorizationProvider();
+      instance.MockDomainProvider();
+      instance.MockItemProvider();
+      instance.MockStandardValuesProvider();
+      instance.MockLinkProvider();
     }
 
     #endregion
 
     #region Methods
-
 
     /// <summary>
     /// Disables the caching.
@@ -183,18 +207,20 @@ namespace Phantom.TestKit.Configuration
     /// </summary>
     protected virtual void LicenseRelativePath()
     {
-      string license = Settings.LicenseFilePath;
+      string license = LicenseFilePath;
       string basePath = AppDomain.CurrentDomain.BaseDirectory;
 
       int i = 5;
       string path;
       do
       {
-        path = basePath + string.Join(string.Empty, Enumerable.Repeat("\\..", i).ToArray());
+        path = basePath + String.Join(String.Empty, Enumerable.Repeat("\\..", i).ToArray());
         --i;
       }
       while (i >= 0 && (!Directory.Exists(path) || !File.Exists(path + license)));
 
+      licenseFullPath = path + license;
+ 
       State.HttpRuntime.AppDomainAppPath = path;
     }
 
@@ -243,7 +269,8 @@ namespace Phantom.TestKit.Configuration
     protected virtual void MockConfiguration()
     {
       var document = new XmlDocument();
-      document.LoadXml(Settings.SitecoreConfiguration);
+      var xml = string.Format("<sitecore><clientDataStore type=\"Sitecore.TestKit.Data.Memory.MemoryClientDataStore, Sitecore.TestKit\"/><settings><setting name=\"LicenseFile\" value=\"{0}\" /></settings></sitecore>", licenseFullPath);
+      document.LoadXml(xml);
       this.AttachDatabases(document);
       this.AttachPipeline(document);
 
@@ -261,8 +288,8 @@ namespace Phantom.TestKit.Configuration
 
       var pipelines = document.DocumentElement.SelectSingleNode("pipelines")
                 ?? document.DocumentElement.AppendChild(document.CreateElement("pipelines"));
-      
-      foreach (var pair in this.Pipelines)
+
+      foreach (var pair in Pipelines)
       {
         var pipeline = pipelines.SelectSingleNode(pair.Key) ?? pipelines.AppendChild(document.CreateElement(pair.Key));
         pair.Value.ForEach(p => pipeline.InnerXml += p);
@@ -281,7 +308,7 @@ namespace Phantom.TestKit.Configuration
       var databases = document.DocumentElement.SelectSingleNode("databases")
                       ?? document.DocumentElement.AppendChild(document.CreateElement("databases"));
 
-      this.Databases.ForEach(d => databases.InnerXml += d);
+      Databases.ForEach(d => databases.InnerXml += d);
     }
 
     /// <summary>
@@ -294,7 +321,7 @@ namespace Phantom.TestKit.Configuration
       ProviderHelper<DomainProvider, DomainProviderCollection>.DefaultProvider = domainProvider.Object;
       domainProvider.Object.Initialize("mock", new NameValueCollection());
 
-      DomainSwitcher.Enter(new Domain("sitecore"));
+      Switcher<Domain, Domain>.Enter(new Domain("sitecore"));
     }
 
     /// <summary>

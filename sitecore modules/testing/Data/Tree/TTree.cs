@@ -1,21 +1,24 @@
-﻿namespace Phantom.TestKit.Data
+﻿using Sitecore.TestKit.Configuration;
+using Sitecore.TestKit.Data.Templates;
+
+namespace Sitecore.TestKit.Data
 {
   using System;
   using System.Collections;
   using System.Collections.Generic;
   using System.Linq;
 
-  using Phantom.TestKit.Configuration;
-  using Phantom.TestKit.Data.Templates;
+  using Sitecore.TestKit.Configuration;
+  using Sitecore.TestKit.Data.Templates;
 
   using Sitecore;
   using Sitecore.Data;
   using Sitecore.Data.Items;
   using Sitecore.Diagnostics;
   using Sitecore.Globalization;
-  using Phantom.TestKit.Data.Extensions;
+  using Sitecore.TestKit.Data.Extensions;
 
-  using TestIDs = Phantom.TestKit.Data.IDs.ItemIDs;
+  using TestIDs = IDs.ItemIDs;
   using Version = Sitecore.Data.Version;
 
   /// <summary>
@@ -54,21 +57,14 @@
     /// </summary>
     static TTree()
     {
-      if (Instance.DefaultInitializationRequired)
-      {
-        var sitecore = new Instance();
+      Instance.AddDatabase("master");
+      Instance.AddDatabase("core");
+      Instance.AddDatabase("web");
 
-        sitecore.AddDatabase("master");
-        sitecore.AddDatabase("core");
-        sitecore.AddDatabase("web");
-
-        sitecore.AddPipeline("filterItem", null, null);
-        sitecore.AddPipeline("loadVisitor", null, null);
-        sitecore.AddPipeline("filterItem", null, null);
-        sitecore.AddPipeline("renderField", "Sitecore.Pipelines.RenderField.GetFieldValue, Sitecore.Kernel", null);
-
-        sitecore.Prepare();
-      }
+      Instance.AddPipeline("filterItem", null, null);
+      Instance.AddPipeline("loadVisitor", null, null);
+      Instance.AddPipeline("filterItem", null, null);
+      Instance.AddPipeline("renderField", "Sitecore.Pipelines.RenderField.GetFieldValue, Sitecore.Kernel", null);
     }
 
     /// <summary>

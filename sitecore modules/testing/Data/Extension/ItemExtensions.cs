@@ -1,4 +1,4 @@
-﻿namespace Phantom.TestKit.Data.Extensions
+﻿namespace Sitecore.TestKit.Data.Extensions
 {
   using System;
 

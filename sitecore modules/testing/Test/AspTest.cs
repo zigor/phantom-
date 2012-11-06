@@ -7,7 +7,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Phantom.TestKit.Test
+using Sitecore.TestKit.Web;
+
+namespace Sitecore.TestKit.Test
 {
   using System.Web;
   using System.Web.SessionState;
@@ -15,7 +17,7 @@ namespace Phantom.TestKit.Test
 
   using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-  using Phantom.TestKit.Web;
+  using Sitecore.TestKit.Web;
 
   /// <summary>
   /// Defines the ASP test class.

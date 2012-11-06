@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Phantom.TestKit.Data
+namespace Sitecore.TestKit.Data
 {
   using System.Collections;
   using System.Collections.Generic;

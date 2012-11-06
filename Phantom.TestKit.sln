@@ -1,13 +1,14 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phantom.TestKit", "Phantom.TestKit.csproj", "{8F149CD1-DC79-4B05-8E73-6866D3564822}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.TestKit", "Sitecore.TestKit.csproj", "{8F149CD1-DC79-4B05-8E73-6866D3564822}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Phantom.Tests.Sample", "Phantom.Tests.Sample\Phantom.Tests.Sample.csproj", "{AD3DE801-6740-480B-906B-E0A49212E7D2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E6BFCFB7-877D-4106-B237-315738809298}"
 	ProjectSection(SolutionItems) = preProject
 		Local.testsettings = Local.testsettings
+		Package.nuspec = Package.nuspec
 		Phantom.TestKit.vsmdi = Phantom.TestKit.vsmdi
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection

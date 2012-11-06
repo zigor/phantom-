@@ -1,4 +1,4 @@
-﻿namespace Phantom.TestKit.Security.Memory.Profile
+﻿namespace Sitecore.TestKit.Security.Memory.Profile
 {
   using System;
   using System.Configuration;

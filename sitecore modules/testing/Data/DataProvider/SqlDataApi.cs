@@ -1,4 +1,4 @@
-﻿namespace Phantom.TestKit.DataProviders
+﻿namespace Sitecore.TestKit.DataProviders
 {
   using System;
   using System.Data;

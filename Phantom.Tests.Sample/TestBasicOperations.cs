@@ -7,7 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Phantom.Tests.Sample
+using Sitecore.TestKit.Data;
+using Sitecore.TestKit.Sites;
+
+namespace Sitecore.Tests.Sample
 {
   using System.Collections.ObjectModel;
 
@@ -15,8 +18,8 @@ namespace Phantom.Tests.Sample
 
   using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-  using Phantom.TestKit.Data;
-  using Phantom.TestKit.Sites;
+  using Sitecore.TestKit.Data;
+  using Sitecore.TestKit.Sites;
 
   using Sitecore;
   using Sitecore.Collections;

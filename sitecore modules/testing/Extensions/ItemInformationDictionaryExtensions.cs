@@ -2,13 +2,13 @@
 
 using Sitecore.Data;
 using Sitecore.Diagnostics;
-using Phantom.TestKit.Data;
+using Sitecore.TestKit.Data;
 
 #endregion
 
-namespace Phantom.TestKit.Extensions
+namespace Sitecore.TestKit.Extensions
 {
-  using Phantom.TestKit.Data;
+  using Sitecore.TestKit.Data;
 
   /// <summary>
    /// <see cref="ItemInformationDictionary"/> extensions

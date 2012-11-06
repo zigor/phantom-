@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Phantom.TestKit.Security.CRM.Data
+namespace Sitecore.TestKit.Security.CRM.Data
 {
   using System.Linq;
 

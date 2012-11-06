@@ -1,4 +1,4 @@
-﻿namespace Phantom.TestKit.Extensions
+﻿namespace Sitecore.TestKit.Extensions
 {
   using System.Xml.Linq;
 

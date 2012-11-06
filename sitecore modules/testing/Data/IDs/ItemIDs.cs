@@ -1,4 +1,4 @@
-﻿namespace Phantom.TestKit.Data.IDs
+﻿namespace Sitecore.TestKit.Data.IDs
 {
   using Sitecore.Data;
 

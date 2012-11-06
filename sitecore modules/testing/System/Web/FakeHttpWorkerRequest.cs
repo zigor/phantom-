@@ -1,4 +1,4 @@
-﻿namespace Phantom.TestKit.Web
+﻿namespace Sitecore.TestKit.Web
 {
   using System;
   using System.Web;

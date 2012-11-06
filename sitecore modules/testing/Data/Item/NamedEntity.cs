@@ -1,4 +1,4 @@
-namespace Phantom.TestKit.Data
+namespace Sitecore.TestKit.Data
 {
   using Sitecore.Data;
   using Sitecore.Diagnostics;

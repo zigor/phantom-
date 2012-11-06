@@ -1,4 +1,4 @@
-﻿namespace Phantom.TestKit.Configuration
+﻿namespace Sitecore.TestKit.Configuration
 {
   using System.Xml;
 

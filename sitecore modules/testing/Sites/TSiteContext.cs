@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Phantom.TestKit.Sites
+namespace Sitecore.TestKit.Sites
 {
   using Sitecore.Collections;
   using Sitecore.Sites;

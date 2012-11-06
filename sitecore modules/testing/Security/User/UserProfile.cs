@@ -1,4 +1,4 @@
-﻿namespace Phantom.TestKit.Security
+﻿namespace Sitecore.TestKit.Security
 {
   /// <summary>
   /// The user profile.

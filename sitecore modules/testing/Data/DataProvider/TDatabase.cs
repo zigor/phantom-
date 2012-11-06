@@ -6,11 +6,14 @@
 //   The database.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace Phantom.TestKit.Data
+
+using Sitecore.TestKit.Data.Memory;
+
+namespace Sitecore.TestKit.Data
 {
   using System;
 
-  using Phantom.TestKit.Data.Memory;
+  using Sitecore.TestKit.Data.Memory;
 
   using Sitecore.Data;
 

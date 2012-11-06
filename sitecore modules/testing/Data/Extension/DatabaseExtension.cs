@@ -1,9 +1,9 @@
-﻿namespace Phantom.TestKit.Data
+﻿namespace Sitecore.TestKit.Data
 {
   using System;
   using System.Collections.Generic;
 
-  using Phantom.TestKit.Data.IDs;
+  using Sitecore.TestKit.Data.IDs;
 
   using Sitecore.Data;
   using Sitecore.Data.Items;
@@ -35,7 +35,7 @@
     /// </returns>
     public static Item CreateItem(this Database database, ID itemID, string itemName, ID templateID)
     {
-      return database.CreateItem(itemID, itemName, templateID, ItemIDs.HomeID);
+      return database.CreateItem(itemID, itemName, templateID, IDs.ItemIDs.HomeID);
     }
 
     /// <summary>

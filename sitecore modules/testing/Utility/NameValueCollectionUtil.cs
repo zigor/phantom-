@@ -1,4 +1,4 @@
-﻿namespace Phantom.TestKit.Utility
+﻿namespace Sitecore.TestKit.Utility
 {
   using System;
   using System.Collections.Specialized;
