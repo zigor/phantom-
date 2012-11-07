@@ -90,6 +90,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="sitecore modules\testing\Configuration\Instance.cs" />
+    <Compile Include="sitecore modules\testing\Configuration\Settings.cs" />
     <Compile Include="sitecore modules\testing\Data\Context\TContext.cs" />
     <Compile Include="sitecore modules\testing\Data\DataProvider\TDatabase.cs" />
     <Compile Include="sitecore modules\testing\Data\DataProvider\SqlDataApi.cs" />
