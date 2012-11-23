@@ -12,7 +12,7 @@ using Sitecore.TestKit.Data.Memory;
 namespace Sitecore.TestKit.Data
 {
   using System;
-
+  using Sitecore.TestKit.Configuration;
   using Sitecore.TestKit.Data.Memory;
 
   using Sitecore.Data;

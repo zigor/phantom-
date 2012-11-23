@@ -69,7 +69,10 @@
     /// </summary>
     public void Dispose()
     {
-      this.Tree.Dispose();
+      if (this.Tree != null)
+      {
+        this.Tree.Dispose();
+      }
       Context.Site = this.previouseSite;
       Context.Database = this.previousDatabase;
     }

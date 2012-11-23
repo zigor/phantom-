@@ -173,8 +173,8 @@ namespace Sitecore.TestKit.Data
     /// </summary>
     public void Dispose()
     {
-      this.database.RemoveItems(this.itemsIds);
-      this.database.RemoveItems(this.templatesIds);
+      this.Database.RemoveItems(this.itemsIds);
+      this.Database.RemoveItems(this.templatesIds);
 
       this.Database.Engines.TemplateEngine.Reset();
     }

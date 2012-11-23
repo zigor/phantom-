@@ -39,6 +39,7 @@ namespace Sitecore.TestKit.Configuration
   using Sitecore.Security.Authentication;
   using Sitecore.Security.Domains;
   using Sitecore.SecurityModel;
+  using SitecoreSettings = Sitecore.Configuration.Settings;
 
   /// <summary>
   /// Defines the instance class.
@@ -174,6 +175,8 @@ namespace Sitecore.TestKit.Configuration
     /// </summary>
     internal static void Prepare()
     {
+      var configurationSet = SitecoreSettings.ConfigurationIsSet;
+
       var instance = new Instance();
 
       Factory.Reset();

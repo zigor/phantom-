@@ -4,6 +4,7 @@
   using System.Web;
 
   using Sitecore.Configuration;
+  using Sitecore.TestKit.Configuration;
 
   /// <summary>
   /// The http context extensions.
@@ -32,8 +33,11 @@
       HttpContext.Current = null;
 
       Factory.Reset();
+
       T result = action();
       HttpContext.Current = saveContext;
+
+      Instance.Prepare();
       return result;
     }
 

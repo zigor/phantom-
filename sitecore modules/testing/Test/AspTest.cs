@@ -16,8 +16,10 @@ namespace Sitecore.TestKit.Test
   using System.Web.UI;
 
   using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+  using Sitecore.Globalization;
+  using Sitecore.TestKit.Configuration;
   using Sitecore.TestKit.Web;
+  using SitecoreSettings = Sitecore.Configuration.Settings;
 
   /// <summary>
   /// Defines the ASP test class.
@@ -53,6 +55,10 @@ namespace Sitecore.TestKit.Test
     public virtual void TestCleanup()
     {
       HttpContext.Current = this.defaultHttpContext;
+
+      var configurationIsSet = SitecoreSettings.ConfigurationIsSet;
+
+      Instance.Prepare();
     }
 
     /// <summary>
@@ -61,6 +67,11 @@ namespace Sitecore.TestKit.Test
     [TestInitialize]
     public virtual void TestInitialize()
     {
+      var configurationIsSet = SitecoreSettings.ConfigurationIsSet;
+
+      Instance.Prepare();
+
+      var initDictionary = Translate.Text("test");
       this.defaultHttpContext = HttpContext.Current;
       this.InitContext("/", "entityname=crmentity");
 
