@@ -180,7 +180,8 @@ namespace Sitecore.TestKit.Configuration
       var instance = new Instance();
 
       Factory.Reset();
-
+      SitecoreSettings.Reset();
+      
       instance.DisableCaching();
       instance.LicenseRelativePath();
       instance.MockConfiguration();
@@ -223,8 +224,6 @@ namespace Sitecore.TestKit.Configuration
       while (i >= 0 && (!Directory.Exists(path) || !File.Exists(path + license)));
 
       licenseFullPath = path + license;
- 
-      State.HttpRuntime.AppDomainAppPath = path;
     }
 
     /// <summary>
