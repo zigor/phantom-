@@ -7,8 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using Sitecore.TestKit.Web;
-
 namespace Sitecore.TestKit.Test
 {
   using System.Web;
@@ -16,6 +14,7 @@ namespace Sitecore.TestKit.Test
   using System.Web.UI;
 
   using Microsoft.VisualStudio.TestTools.UnitTesting;
+  using Moq;
   using Sitecore.Globalization;
   using Sitecore.TestKit.Configuration;
   using Sitecore.TestKit.Web;
@@ -34,6 +33,19 @@ namespace Sitecore.TestKit.Test
     private HttpContext defaultHttpContext;
 
     #endregion
+
+    #region Properties
+
+    /// <summary>
+    /// Gets or sets the state of the session.
+    /// </summary>
+    /// <value>
+    /// The state of the session.
+    /// </value>
+    public IHttpSessionState SessionState { get; private set; }
+
+    #endregion
+
 
     #region Public Methods and Operators
 
@@ -94,15 +106,11 @@ namespace Sitecore.TestKit.Test
     /// </param>
     private void InitContext(string page, string queryString)
     {
-      IHttpSessionState session = null;
-      if (HttpContext.Current != null && HttpContext.Current.Session != null)
-      {
-        session = SessionStateUtility.GetHttpSessionStateFromContext(HttpContext.Current);
-      }
-
       var httpWorkerRequest = new FakeHttpWorkerRequest(page, queryString);
       HttpContext.Current = new HttpContext(httpWorkerRequest);
-      SessionStateUtility.AddHttpSessionStateToContext(HttpContext.Current, session ?? new MemoryHttpSessionState());
+      var sessionMock = new Mock<MemoryHttpSessionState> { CallBase = true };
+      this.SessionState = sessionMock.Object;
+      SessionStateUtility.AddHttpSessionStateToContext(HttpContext.Current, this.SessionState);
     }
 
     #endregion

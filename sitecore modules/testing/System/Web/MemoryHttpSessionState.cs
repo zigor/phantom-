@@ -38,17 +38,17 @@
     /// <summary>
     /// Gets or sets the code page.
     /// </summary>
-    public int CodePage { get; set; }
+    public virtual int CodePage { get; set; }
 
     /// <summary>
     /// Gets or sets the cookie mode.
     /// </summary>
-    public HttpCookieMode CookieMode { get; set; }
+    public virtual HttpCookieMode CookieMode { get; set; }
 
     /// <summary>
     /// Gets the count.
     /// </summary>
-    public int Count
+    public virtual int Count
     {
       get
       {
@@ -59,27 +59,27 @@
     /// <summary>
     /// Gets a value indicating whether is abandoned.
     /// </summary>
-    public bool IsAbandoned { get; private set; }
+    public virtual bool IsAbandoned { get; private set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether is cookieless.
     /// </summary>
-    public bool IsCookieless { get; set; }
+    public virtual bool IsCookieless { get; set; }
 
     /// <summary>
     /// Gets a value indicating whether is new session.
     /// </summary>
-    public bool IsNewSession { get; private set; }
+    public virtual bool IsNewSession { get; private set; }
 
     /// <summary>
     /// Gets a value indicating whether is read only.
     /// </summary>
-    public bool IsReadOnly { get; private set; }
+    public virtual bool IsReadOnly { get; private set; }
 
     /// <summary>
     /// Gets a value indicating whether is synchronized.
     /// </summary>
-    public bool IsSynchronized
+    public virtual bool IsSynchronized
     {
       get
       {
@@ -90,7 +90,7 @@
     /// <summary>
     /// Gets the keys.
     /// </summary>
-    public NameObjectCollectionBase.KeysCollection Keys
+    public virtual NameObjectCollectionBase.KeysCollection Keys
     {
       get
       {
@@ -101,27 +101,27 @@
     /// <summary>
     /// Gets or sets the lcid.
     /// </summary>
-    public int LCID { get; set; }
+    public virtual int LCID { get; set; }
 
     /// <summary>
     /// Gets or sets the mode.
     /// </summary>
-    public SessionStateMode Mode { get; set; }
+    public virtual SessionStateMode Mode { get; set; }
 
     /// <summary>
     /// Gets the session id.
     /// </summary>
-    public string SessionID { get; private set; }
+    public virtual string SessionID { get; private set; }
 
     /// <summary>
     /// Gets the static objects.
     /// </summary>
-    public HttpStaticObjectsCollection StaticObjects { get; private set; }
+    public virtual HttpStaticObjectsCollection StaticObjects { get; private set; }
 
     /// <summary>
     /// Gets the sync root.
     /// </summary>
-    public object SyncRoot
+    public virtual object SyncRoot
     {
       get
       {
@@ -189,7 +189,7 @@
     /// <summary>
     /// The abandon.
     /// </summary>
-    public void Abandon()
+    public virtual void Abandon()
     {
       this.IsAbandoned = true;
     }
@@ -203,7 +203,7 @@
     /// <param name="value">
     /// The value.
     /// </param>
-    public void Add(string name, object value)
+    public virtual void Add(string name, object value)
     {
       this.collection[name] = value;
     }
@@ -211,7 +211,7 @@
     /// <summary>
     /// The clear.
     /// </summary>
-    public void Clear()
+    public virtual void Clear()
     {
       this.collection.Clear();
     }
@@ -225,7 +225,7 @@
     /// <param name="index">
     /// The index.
     /// </param>
-    public void CopyTo(Array array, int index)
+    public virtual void CopyTo(Array array, int index)
     {
       IEnumerator enumerator = this.GetEnumerator();
       while (enumerator.MoveNext())
@@ -240,7 +240,7 @@
     /// <returns>
     /// The <see cref="IEnumerator"/>.
     /// </returns>
-    public IEnumerator GetEnumerator()
+    public virtual IEnumerator GetEnumerator()
     {
       return this.collection.GetEnumerator();
     }
@@ -251,7 +251,7 @@
     /// <param name="name">
     /// The name.
     /// </param>
-    public void Remove(string name)
+    public virtual void Remove(string name)
     {
       this.collection.Remove(name);
     }
@@ -259,7 +259,7 @@
     /// <summary>
     /// The remove all.
     /// </summary>
-    public void RemoveAll()
+    public virtual void RemoveAll()
     {
       this.collection.Clear();
     }
@@ -270,7 +270,7 @@
     /// <param name="index">
     /// The index.
     /// </param>
-    public void RemoveAt(int index)
+    public virtual void RemoveAt(int index)
     {
       this.collection.RemoveAt(index);
     }
