@@ -23,6 +23,7 @@ namespace Sitecore.TestKit.Configuration
 
   using Moq;
 
+  using Sitecore.Sites;
   using Sitecore.TestKit.Security.AccessControl;
 
   using Sitecore;
@@ -192,6 +193,7 @@ namespace Sitecore.TestKit.Configuration
       instance.MockItemProvider();
       instance.MockStandardValuesProvider();
       instance.MockLinkProvider();
+      instance.MockSiteProvider();
     }
 
     #endregion
@@ -334,6 +336,16 @@ namespace Sitecore.TestKit.Configuration
       var itemProvider = new ItemProvider();
       ProviderHelper<ItemProvider, ItemProviderCollection>.DefaultProvider = itemProvider;
       itemProvider.Initialize("mock", new NameValueCollection());
+    }
+
+    /// <summary>
+    /// Mocks the site provider.
+    /// </summary>
+    protected virtual void MockSiteProvider()
+    {
+      var siteProvider = new Mock<SiteProvider> { CallBase = true };
+      ProviderHelper<SiteProvider, SiteProviderCollection>.DefaultProvider = siteProvider.Object;
+      siteProvider.Object.Initialize("mock", new NameValueCollection());
     }
 
     /// <summary>
