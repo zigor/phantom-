@@ -273,7 +273,7 @@ namespace Sitecore.TestKit.Configuration
     protected virtual void MockConfiguration()
     {
       var document = new XmlDocument();
-      var xml = string.Format("<sitecore><clientDataStore type=\"Sitecore.TestKit.Data.Memory.MemoryClientDataStore, Sitecore.TestKit\"/><settings><setting name=\"LicenseFile\" value=\"{0}\" /></settings></sitecore>", licenseFullPath);
+      var xml = string.Format("<sitecore><sites></sites><clientDataStore type=\"Sitecore.TestKit.Data.Memory.MemoryClientDataStore, Sitecore.TestKit\"/><settings><setting name=\"LicenseFile\" value=\"{0}\" /></settings></sitecore>", licenseFullPath);
       document.LoadXml(xml);
       this.AttachDatabases(document);
       this.AttachPipeline(document);
