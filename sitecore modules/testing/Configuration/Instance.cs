@@ -23,6 +23,9 @@ namespace Sitecore.TestKit.Configuration
 
   using Moq;
 
+  using Sitecore.Analytics.Data.DataAccess.DataAdapters;
+  using Sitecore.Analytics.Data.DataAccess.DataAdapters.Sql.SqlServer;
+  using Sitecore.Data.SqlServer;
   using Sitecore.Sites;
   using Sitecore.TestKit.Security.AccessControl;
 
@@ -182,7 +185,7 @@ namespace Sitecore.TestKit.Configuration
 
       Factory.Reset();
       SitecoreSettings.Reset();
-      
+
       instance.DisableCaching();
       instance.LicenseRelativePath();
       instance.MockConfiguration();
@@ -194,6 +197,7 @@ namespace Sitecore.TestKit.Configuration
       instance.MockStandardValuesProvider();
       instance.MockLinkProvider();
       instance.MockSiteProvider();
+      instance.MockAnalyticsProvider();
     }
 
     #endregion
@@ -346,6 +350,18 @@ namespace Sitecore.TestKit.Configuration
       var siteProvider = new Mock<SiteProvider> { CallBase = true };
       ProviderHelper<SiteProvider, SiteProviderCollection>.DefaultProvider = siteProvider.Object;
       siteProvider.Object.Initialize("mock", new NameValueCollection());
+    }
+
+    /// <summary>
+    /// Mocks the analytics provider.
+    /// </summary>
+    protected virtual void MockAnalyticsProvider()
+    {
+      new ProviderHelper<DataAdapterProvider, DataAdapterProviderCollection>("dataAdapterManager");
+
+      var provider = new Mock<SqlServerDataAdapterProvider>(new SqlServerDataApi()) { CallBase = true };
+      ProviderHelper<DataAdapterProvider, DataAdapterProviderCollection>.DefaultProvider = provider.Object;
+      provider.Object.Initialize("mock", new NameValueCollection());
     }
 
     /// <summary>
