@@ -177,7 +177,7 @@ namespace Sitecore.TestKit.Configuration
     /// <summary>
     /// Prepares this instance.
     /// </summary>
-    internal static void Prepare()
+    public static void Prepare()
     {
       var configurationSet = SitecoreSettings.ConfigurationIsSet;
 
