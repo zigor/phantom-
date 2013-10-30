@@ -3,6 +3,7 @@
   using System;
   using System.Collections.Generic;
   using System.Linq;
+  using System.Web.UI.WebControls;
 
   using Sitecore;
   using Sitecore.Collections;
@@ -71,6 +72,39 @@
     #endregion
 
     #region Public Methods and Operators
+
+    /// <summary>
+    /// Resolves the path.
+    /// </summary>
+    /// <param name="itemPath">The item path.</param>
+    /// <param name="context">The context.</param>
+    /// <returns></returns>
+    public override ID ResolvePath(string itemPath, CallContext context)
+    {
+      var id = this.GetRootID(context);
+
+      if (!string.IsNullOrEmpty(itemPath))
+      {
+        var path = itemPath.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (var part in path.Skip(1))
+        {
+          var item = this.GetItemDefinition(id, context);
+          foreach (ID childId in this.GetChildIDs(item, context))
+          {
+            var child = this.GetItemDefinition(childId, context);
+
+            if (String.Compare(part, child.Name, StringComparison.OrdinalIgnoreCase) == 0)
+            {
+              id = childId;
+              break;
+            }
+          }
+        }
+      }
+
+      return id;
+    }
 
     /// <summary>
     /// The add version.

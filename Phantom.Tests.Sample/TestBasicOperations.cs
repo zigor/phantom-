@@ -18,6 +18,9 @@ namespace Sitecore.Tests.Sample
 
   using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+  using Sitecore.Globalization;
+  using Sitecore.Publishing;
+  using Sitecore.Shell.Applications.ContentEditor;
   using Sitecore.TestKit.Data;
   using Sitecore.TestKit.Sites;
 
@@ -63,6 +66,17 @@ namespace Sitecore.Tests.Sample
         {
           tree.Database.GetItem(Path).Should().BeNull();
         }
+      }
+    }
+
+    [TestMethod]
+    public void TestPath()
+    {
+      using (var tree = new TTree("master") { new TTemplate(TemplateIDs.Folder) })
+      {
+        tree.Database.GetItem("/sitecore/system/").Add("publishing targets", new TemplateID(TemplateIDs.Folder));
+
+        tree.Database.GetItem("/sitecore/System/publishing targets").Paths.FullPath.Should().Be("/sitecore/System/publishing targets");
       }
     }
 
